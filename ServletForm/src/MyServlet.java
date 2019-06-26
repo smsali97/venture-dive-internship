@@ -15,7 +15,6 @@ public class MyServlet extends HttpServlet {
 	private static final long serialVersionUID = -5281450407514571526L;
 
 	private PreparedStatement preparedStatement;
-
 	@Override
 	public void init() throws ServletException {
 		// connection
