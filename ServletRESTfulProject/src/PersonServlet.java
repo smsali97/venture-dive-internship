@@ -81,6 +81,7 @@ public class PersonServlet extends HttpServlet {
 		String requestUrl = request.getRequestURI();
 		String name = requestUrl.substring("/ServletRESTfulProject/people/".length());
 		System.out.println("Name i got was " + name + " " + requestUrl);
+
 		try {
 			selectPreparedStatement.setString(1, name);
 		} catch (SQLException e) {
@@ -117,33 +118,46 @@ public class PersonServlet extends HttpServlet {
 		}
 
 	}
-	
+
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String requestUrl = req.getRequestURI();
 		String name = requestUrl.substring("/ServletRESTfulProject/people/".length());
-		
+
 		String about = req.getParameter("about");
 		String birthYear = req.getParameter("birthYear");
-		
-	      		
+
 		System.out.println(about + " " + birthYear);
 		System.out.println("Name was " + name);
-		try {
-			updatePreparedStatement.setString(1, about);
-			updatePreparedStatement.setString(2, birthYear);
-			updatePreparedStatement.setString(3, name);
 
-			int count = updatePreparedStatement.executeUpdate();
-			if (count != 1)
-				resp.getOutputStream().println("Unable to update");
-			else {
-				resp.getOutputStream().println("Updated " + count + " values !");
+		synchronized (updatePreparedStatement) {
+
+			try {
+				updatePreparedStatement.clearParameters();
+			} catch (SQLException e1) {
+
+				System.out.println("Unable to clear parameters");
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-		} catch (SQLException e) {
-			System.out.println("Query is wrong");
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
+			try {
+				updatePreparedStatement.setString(1, about);
+				updatePreparedStatement.setString(2, birthYear);
+				updatePreparedStatement.setString(3, name);
+
+				int count = updatePreparedStatement.executeUpdate();
+				if (count != 1)
+					resp.getOutputStream().println("Unable to update");
+				else {
+					resp.getOutputStream().println("Updated " + count + " values !");
+				}
+			} catch (SQLException e) {
+				System.out.println("Query is wrong");
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		}
 	}
 
@@ -152,18 +166,23 @@ public class PersonServlet extends HttpServlet {
 		String requestUrl = req.getRequestURI();
 		String name = requestUrl.substring("/ServletRESTfulProject/people/".length());
 		System.out.println("Name was " + name);
-		try {
-			deletePreparedStatement.setString(1, name);
 
-			int count = deletePreparedStatement.executeUpdate();
-			if (count != 1)
-				resp.getOutputStream().println("Unable to delete");
-			else
-				resp.getOutputStream().println("Deleted " + count + " values !");
-		} catch (SQLException e) {
-			System.out.println("Query is wrong");
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		synchronized (deletePreparedStatement) {
+			try {
+				deletePreparedStatement.clearParameters();
+				deletePreparedStatement.setString(1, name);
+
+				int count = deletePreparedStatement.executeUpdate();
+				if (count != 1)
+					resp.getOutputStream().println("Unable to delete");
+				else
+					resp.getOutputStream().println("Deleted " + count + " values !");
+			} catch (SQLException e) {
+				System.out.println("Query is wrong");
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		}
 	}
 
@@ -202,16 +221,22 @@ public class PersonServlet extends HttpServlet {
 		String about = request.getParameter("about");
 		String birthYear = request.getParameter("birthYear");
 
-		try {
-			insertPreparedStatement.setString(1, name);
-			insertPreparedStatement.setString(2, about);
-			insertPreparedStatement.setString(3, birthYear);
+		synchronized (insertPreparedStatement) {
 
-			insertPreparedStatement.execute();
+			try {
+				insertPreparedStatement.clearParameters();
 
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+				insertPreparedStatement.setString(1, name);
+				insertPreparedStatement.setString(2, about);
+				insertPreparedStatement.setString(3, birthYear);
+
+				insertPreparedStatement.execute();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		}
 
 	}
