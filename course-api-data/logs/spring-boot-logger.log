@@ -1,0 +1,12 @@
+2019-06-28 12:44:38,343 INFO io.javabrains.springbootstarter.topic.TopicController [http-nio-8081-exec-2] User has entered the /topics GET endpoint
+2019-06-28 15:10:06,912 INFO org.springframework.boot.StartupInfoLogger [main] Starting CourseApiApp on DESKTOP-6VQJK1N with PID 21396 (C:\Users\VD-INTERN\eclipse-workspace\course-api-data\target\classes started by VD-INTERN in C:\Users\VD-INTERN\eclipse-workspace\course-api-data)
+2019-06-28 15:10:06,917 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.6.RELEASE, Spring v5.1.8.RELEASE
+2019-06-28 15:10:06,918 INFO org.springframework.boot.SpringApplication [main] The following profiles are active: dev
+2019-06-28 15:10:13,393 INFO org.springframework.boot.StartupInfoLogger [main] Started CourseApiApp in 7.303 seconds (JVM running for 7.846)
+2019-06-28 15:10:17,701 INFO io.javabrains.springbootstarter.topic.TopicController [http-nio-8081-exec-2] User has entered the topics/id endpoint
+2019-06-28 15:14:13,884 INFO io.javabrains.springbootstarter.topic.TopicController [http-nio-8081-exec-1] User has entered the topics/id endpoint
+2019-06-28 15:14:15,210 INFO io.javabrains.springbootstarter.topic.TopicController [http-nio-8081-exec-4] User has entered the topics/id endpoint
+2019-06-28 15:26:37,029 INFO io.javabrains.springbootstarter.topic.TopicController [http-nio-8081-exec-1] User has entered the topics/id endpoint
+2019-06-28 16:34:52,783 INFO io.javabrains.springbootstarter.topic.TopicController [http-nio-8081-exec-1] User has entered the topics/id endpoint
+2019-06-28 16:34:53,037 WARN io.javabrains.springbootstarter.topic.TopicController [http-nio-8081-exec-1] No Element found when user searched xassdvb
+2019-06-28 16:36:29,135 WARN io.javabrains.springbootstarter.topic.TopicController [http-nio-8081-exec-1] No Element found when user searched xassdvb
